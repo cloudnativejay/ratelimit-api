@@ -55,8 +55,8 @@ jobs:
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
         
-    - name: 'Run Cluster Connect Proxy'
-      run: echo ${{ secrets.KUBECONFIG }} | base64 -d > ~/.kube/config
+    - name: 'Populate KUBECONFIG'
+      run: mkdir ~/.kube && echo ${{ secrets.KUBECONFIG }} | base64 -d > ~/.kube/config
 
     - name: 'Run kubectl'
       run: kubectl get pods

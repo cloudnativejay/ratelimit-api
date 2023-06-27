@@ -42,6 +42,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: 'Install AZ CLI'
+      run: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     - name: 'Az CLI Login'
       uses: azure/login@v1
       with:

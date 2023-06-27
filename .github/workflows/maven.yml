@@ -37,16 +37,20 @@ jobs:
   
   kubernetes:
     runs-on: arc-self-runners
-    needs: build
+#     needs: build
     
     steps:
+    - uses: actions/checkout@v3
+    
     - name: 'Az CLI Login'
       uses: azure/login@v1
       with:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+        
     - name: 'Run Cluster Connect Proxy'
       run: nohup az connectedk8s proxy -n oss-k8s1272 -g arc-rg 2>&1 &
+      
     - name: 'Run kubectl'
       run: kubectl get pods

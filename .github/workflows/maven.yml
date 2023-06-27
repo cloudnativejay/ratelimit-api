@@ -37,6 +37,8 @@ jobs:
   
   kubernetes:
     runs-on: arc-self-runners
+    needs: build
+    
     steps:
     - name: 'Az CLI Login'
       uses: azure/login@v1

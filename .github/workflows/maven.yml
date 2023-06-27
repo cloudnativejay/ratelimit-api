@@ -56,9 +56,7 @@ jobs:
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
         
     - name: 'Run Cluster Connect Proxy'
-      run: nohup az connectedk8s proxy -n oss-k8s1272 -g arc-rg 2>&1 &
-      
-    - name: 'Check contexts'
-      run: kubectl config get-contexts
+      run: echo ${{ secrets.KUBECONFIG }} | base64 -d > ~/.kube/config
+
     - name: 'Run kubectl'
       run: kubectl get pods
